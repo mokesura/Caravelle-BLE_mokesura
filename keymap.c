@@ -86,7 +86,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                               KC_LGUI, ESC_NUM, LOWER,   SPC_CTL,        ENT_SFT, RAISE,   BSP_ALT, KC_DEL  \
+                    KC_LGUI ,ESC_NUM , LT(LOWER,JP_MHEN), SPC_CTL,        ENT_SFT, LT(RAISE,JP_HENK), BSP_ALT, KC_DEL\
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
