@@ -71,7 +71,7 @@ enum {
 #define ESC_NUM LT(_NUMPAD, KC_ESC)	 //親指左側
 //#define HEN_RIS LT(_RAISE, JP_HENK) //親指右側
 #define BSP_ALT ALT_T(KC_BSPC) //親指右側
-//#define B_ADJ LT(_ADJUST,KC_B)
+//#define B_ADJ LT(_ADJUST,KC_B)	
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -86,7 +86,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                    KC_LGUI ,ESC_NUM , LT(LOWER,JP_MHEN), SPC_CTL,        ENT_SFT, LT(RAISE,JP_HENK), BSP_ALT, KC_DEL\
+                    KC_LGUI ,ESC_NUM , LT(_LOWER,JP_MHEN), SPC_CTL,        ENT_SFT, LT(_RAISE,JP_HENK), BSP_ALT, KC_DEL\
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
