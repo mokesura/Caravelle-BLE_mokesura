@@ -63,15 +63,10 @@ enum {
 // #define NUMPAD MO(_NUMPAD)
 
 // Special keycodes
-//#define DEL_SFT SFT_T(KC_DEL) //左側
-//define ENT_CTL CTL_T(KC_ENT) //左側
-#define SPC_CTL CTL_T(KC_SPC) //親指中央
-#define ENT_SFT SFT_T(KC_ENT) //親指中央
-//#define MHE_LWR LT(_LOWER, JP_MHEN)	 //親指左側
-#define ESC_NUM LT(_NUMPAD, KC_ESC)	 //親指左側
-//#define HEN_RIS LT(_RAISE, JP_HENK) //親指右側
-#define BSP_ALT ALT_T(KC_BSPC) //親指右側
-//#define B_ADJ LT(_ADJUST,KC_B)	
+#define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
+#define ENT_SFT SFT_T(KC_ENT)       //on slave keyboard
+#define ESC_NUM LT(_NUMPAD, KC_ESC) //on master keyboard
+#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -86,7 +81,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                    KC_LGUI ,ESC_NUM , LT(_LOWER,JP_MHEN), SPC_CTL,        ENT_SFT, LT(_RAISE,JP_HENK), BSP_ALT, KC_DEL\
+                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_CTL,        ENT_SFT, RAISE,  BSP_ALT,  KC_DEL  \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
@@ -104,7 +99,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+                        +--------+--------+--------+--------+--------+--------+
-    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_APP , \
+    JP_ZHTG, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_APP , \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
     _______, _______, _______, _______, _______, _______, JP_ZHTG,        JP_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, JP_MINS, _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
@@ -151,28 +146,66 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+static bool lower_pressed = false;
+static uint16_t lower_pressed_time = 0;
+static bool raise_pressed = false;
+static uint16_t raise_pressed_time = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   char str[16];
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
+        lower_pressed = true;
+        lower_pressed_time = record->event.time;
+
         layer_on(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+        if (lower_pressed && (TIMER_DIFF_16(record->event.time, lower_pressed_time) < TAPPING_TERM)) {
+          register_code(KC_MHEN);
+          unregister_code(KC_MHEN);
+        }
+        lower_pressed = false;
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
+        raise_pressed = true;
+        raise_pressed_time = record->event.time;
+
         layer_on(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+        if (raise_pressed && (TIMER_DIFF_16(record->event.time, raise_pressed_time) < TAPPING_TERM)) {
+          register_code(KC_HENK);
+          unregister_code(KC_HENK);
+        }
+        raise_pressed = false;
       }
       return false;
+      break;
+    case ADJUST:
+      if (record->event.pressed) {
+        layer_on(_ADJUST);
+      } else {
+        layer_off(_ADJUST);
+      }
+      return false;
+      break;
+    default:
+      if (record->event.pressed) {
+        // reset the flags
+        lower_pressed = false;
+        raise_pressed = false;
+      }
       break;
   }
   if (record->event.pressed) {
