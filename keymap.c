@@ -66,7 +66,7 @@ enum {
 #define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
 #define ENT_SFT SFT_T(KC_ENT)       //on slave keyboard
 #define ESC_NUM LT(_NUMPAD, KC_ESC) //on master keyboard
-#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
+//#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -81,7 +81,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_CTL,        ENT_SFT, RAISE,  BSP_ALT,  KC_DEL  \
+                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_CTL,        ENT_SFT, RAISE,   KC_LALT,  KC_DEL  \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
