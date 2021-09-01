@@ -63,7 +63,8 @@ enum {
 // #define NUMPAD MO(_NUMPAD)
 
 // Special keycodes
-#define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
+//#define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
+#define SPC_ALT ALT_T(KC_SPC)       //on master keyboard
 #define ENT_SFT SFT_T(KC_ENT)       //on slave keyboard
 #define ESC_NUM LT(_NUMPAD, KC_ESC) //on master keyboard
 //#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
@@ -81,7 +82,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_CTL,        ENT_SFT, RAISE,   KC_LALT,  KC_DEL  \
+                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_ALT,        ENT_SFT, RAISE,   KC_LALT, KC_DEL  \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
@@ -117,7 +118,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_ENT,  KC_KP_1, KC_KP_2, KC_KP_3, KC_KP_0, KC_PPLS, _______,        _______, _______, _______, _______, _______, _______, _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                               _______, _______, KC_SPC,  _______,        _______, _______, _______, _______ \
+                               _______, _______, KC_SPC,  KC_LALT,        _______, _______, _______, _______ \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
   
