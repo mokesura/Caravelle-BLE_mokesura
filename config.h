@@ -6,7 +6,7 @@
 #define BLE_HID_SLAVE_LATENCY 3
 
 /* タップがホールドになるまでの時間 */
-#define TAPPING_TERM 135
+#define TAPPING_TERM 170
 /* TAPPING_TERM以内にHOLDに設定されたキーを押しても、TAPとみなさずHOLD扱いする */
 #define PERMISSIVE_HOLD
 /* TAPPING_TERMを過ぎて（他に何も押さず）キーを離してもTAPのキーを出力する */
