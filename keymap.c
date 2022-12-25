@@ -63,11 +63,11 @@ enum {
 // #define NUMPAD MO(_NUMPAD)
 
 // Special keycodes
-//#define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
+#define SPC_CTL CTL_T(KC_SPC)       //on master keyboard
 #define SPC_ALT ALT_T(KC_SPC)       //on master keyboard
 #define ENT_SFT SFT_T(KC_ENT)       //on slave keyboard
 #define ESC_NUM LT(_NUMPAD, KC_ESC) //on master keyboard
-//#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
+#define BSP_ALT ALT_T(KC_BSPC)      //on slave keyboard
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -78,11 +78,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //+--------+--------+--------+--------+--------+--------+                        +--------+--------+--------+--------+--------+--------+
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    JP_LBRC,        JP_RBRC, KC_H,    KC_J,    KC_K,    KC_L,    JP_MINS, KC_RSFT, \
+    KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    JP_LBRC,        KC_HOME, KC_H,    KC_J,    KC_K,    KC_L,    JP_MINS, KC_RSFT, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RCTL_T(JP_BSLS), \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_ALT,        ENT_SFT, RAISE,   KC_LALT, KC_DEL  \
+                               KC_LGUI ,ESC_NUM ,LOWER,   SPC_CTL,        ENT_SFT, RAISE,   KC_LALT, KC_DEL  \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
 
@@ -90,9 +90,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //+--------+--------+--------+--------+--------+--------+                        +--------+--------+--------+--------+--------+--------+
     KC_ESC,  KC_EXLM, JP_DQT,  KC_HASH, KC_DLR,  KC_PERC,                          JP_AMPR, JP_QUOT, XXXXXXX, JP_BSLS, JP_UNDS, KC_CAPS, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,          JP_HENK, JP_CIRC, JP_YEN,  JP_AT  , JP_SCLN, JP_COLN, _______, \
+    KC_F6,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,          JP_HENK, JP_CIRC, JP_YEN,  JP_AT  , JP_SCLN, JP_COLN, _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,         JP_MHEN, JP_TILD, JP_PIPE, JP_GRV , JP_PLUS, JP_ASTR, _______, \
+    KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,         JP_MHEN, JP_TILD, JP_PIPE, JP_GRV , JP_PLUS, JP_ASTR, _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
                                _______, KC_SPC,  _______, _______,        _______, _______, _______, _______ \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
@@ -102,9 +102,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //+--------+--------+--------+--------+--------+--------+                        +--------+--------+--------+--------+--------+--------+
     JP_ZHTG, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_APP , \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, JP_ZHTG,        JP_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, JP_MINS, _______, \
+    _______, _______, _______, _______, JP_LBRC, JP_RBRC, JP_ZHTG,        JP_HENK, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, JP_MINS, _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, JP_KANA,        JP_MHEN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DOT , _______, \
+    _______, _______, _______, _______, JP_LPRN, JP_RPRN, JP_KANA,        JP_MHEN, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DOT , _______, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
                                _______, _______, _______, _______,        _______, _______, _______, _______ \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
@@ -133,7 +133,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                _______, _______, _______, _______,        _______, _______, _______, _______ \
  //                           +--------+--------+--------+--------+      +--------+--------+--------+--------+
   ),
-
+  
   [_ADJUST] = LAYOUT ( \
  //+--------+--------+--------+--------+--------+--------+                        +--------+--------+--------+--------+--------+--------+
     _______, AD_WO_L, ADV_ID1, ADV_ID2, ADV_ID3, ADV_ID4,                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
